@@ -35,7 +35,7 @@ public class DemoCartTest {
 		
 		if(el.doIsDisplayed(policy))
 		{
-			el.do
+			el.doClick(policy);
 		}
 		
 	}

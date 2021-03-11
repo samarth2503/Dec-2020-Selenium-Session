@@ -32,7 +32,7 @@ public class ActionKeysAndSendKeys {
 	
 		Robot r = new Robot();
 		
-		r.keyPress();
+		//r.keyPress();
 		
 		
 	}
