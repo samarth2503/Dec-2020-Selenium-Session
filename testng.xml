@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Regression Suite" verbose="5" >
+
+  <test  name="AmazonTest">
+  <parameter name="browser" value="chrome" />
+  <parameter name="url" value="https://www.amazon.in/" />
+    <classes>
+      <class name="TestngSessions.AmazonTest"/>
+    </classes>
+  </test> <!-- RegressionTest -->
+  
+  <test  name="OrangeHRMTest">
+  <parameter name="browser" value="firefox" />
+  <parameter name="url" value="https://opensource-demo.orangehrmlive.com/" />
+    <classes>
+      <class name="TestngSessions.OrnageHRMTest"/>
+    </classes>
+  </test> 
+  
+   <test  name="ClassicCRMTest">
+  <parameter name="browser" value="chrome" />
+  <parameter name="url" value="https://classic.crmpro.com/" />
+    <classes>
+      <class name="TestngSessions.ClassicCRMTest"/>
+    </classes>
+  </test> 
+  
+</suite> <!-- Suite -->
