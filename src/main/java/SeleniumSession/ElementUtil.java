@@ -213,8 +213,8 @@ public class ElementUtil {
 	// 3 level click
 	public void doMoveToElement(By locator1, By locator2) {
 		
-		ac.moveToElement(getElement(locator1)).perform();
-		ac.moveToElement(getElement(locator2)).perform();
+		ac.moveToElement(getElement(locator1)).moveToElement(getElement(locator2)).build().perform();
+		
 	}
 
 	// 3 level with click
@@ -236,9 +236,17 @@ public class ElementUtil {
 																			// text feild and them enter the text
 	}
 	
+
 	public String[] splitstring(String str,String pattern)
 	{
 		String s[] = str.split(pattern);
-		return s; 
+		return s;
+	}
+
+	public void IsEnabled(By locator)
+	{
+		driver.findElement(locator).isEnabled();
+	}
+
 
 }

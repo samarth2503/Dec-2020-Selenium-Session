@@ -26,6 +26,7 @@ public class Swiggy {
 		
 		driver.manage().deleteAllCookies();
 		
+		
 		driver.get("https://www.swiggy.com");
 		
 		driver.findElement(By.id("location")).sendKeys("Electronic City");
@@ -38,30 +39,41 @@ public class Swiggy {
 		
 		ac.moveToElement(el).click().perform();
 		
-		int count = 383;
+		Thread.sleep(5000);
+		
+		WebElement header = driver.findElement(By.cssSelector(".BZR3j"));
+		
+		int count = Integer.valueOf(header.getText().split(" ")[0]);
 		
 		List<WebElement> ele = driver.findElements(By.xpath("//div[@class='nA6kb']"));
-		int c=1;
-		int a = ele.size();
-		while(true)
+		int res = ele.size();
+		while(count!=res)
 		{
+		//	List<WebElement> ele = driver.findElements(By.xpath("//div[@class='nA6kb']"));
+			
+			
 			for(WebElement e :ele)
 			{
+				System.out.println("Restuarant is "+e.getText());
 				
-				System.out.println("Element count is "+a);
-				ScrollDown(driver,e);
-				a=a+ele.size();
-				System.out.println("Restuarant is "+e.getText()+"count is "+(c+1));
 			}
+			ele=null;
+			doScrollDown(driver);
 			
-			break;
+			ele = driver.findElements(By.xpath("//div[@class='nA6kb']"));
+			int a = ele.size();
+			res+=a;
+			
+			System.out.println("-------------------");
+			System.out.println("List of Element is "+res);
+			System.out.println("-------------------");
 		}
 	}
 	
-	public static void doScrollDown(WebDriver driver,WebElement element)
+	public static void doScrollDown(WebDriver driver)
 	{
 		JavascriptExecutor js = (JavascriptExecutor)driver;
-		js.executeScript("argument[0].scrollIntoView(true)",element);
+		js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 	}
 	
 	public static void ScrollDown(WebDriver driver,WebElement element)
