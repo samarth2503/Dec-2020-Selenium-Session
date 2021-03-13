@@ -74,7 +74,24 @@ public class selectDropDownHandle {
 	{
 		WebElement ele = getElement(locator);
 		
-		Select s = new Select(ele);s
+		Select s = new Select(ele);
+		
+		List<WebElement> element = s.getOptions();
+		
+		List<String> optionList = new ArrayList<String>();
+		
+		for(WebElement e : element)
+		{
+			optionList.add(e.getText());
+		}
+		return optionList;
+	}
+	
+	public static List<String> getDropdownOptionList(By locator,String tag)
+	{
+		WebElement ele = getElement(locator);
+		
+		Select s = new Select(ele);
 		
 		List<WebElement> element = s.getOptions();
 		
