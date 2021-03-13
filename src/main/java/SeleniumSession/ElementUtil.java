@@ -235,5 +235,10 @@ public class ElementUtil {
 		ac.sendKeys(getElement(locator), text).perform(); 				// Actions class sendKeys will first perform click action on
 																			// text feild and them enter the text
 	}
+	
+	public String[] splitstring(String str,String pattern)
+	{
+		String s[] = str.split(pattern);
+		return s; 
 
 }
