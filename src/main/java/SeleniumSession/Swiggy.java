@@ -1,6 +1,8 @@
 package SeleniumSession;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -22,52 +24,53 @@ public class Swiggy {
 		
 		driver.manage().window().maximize();
 		
-		driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+		//driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		driver.manage().deleteAllCookies();
 		
 		
 		driver.get("https://www.swiggy.com");
 		
+		Thread.sleep(5000);
 		driver.findElement(By.id("location")).sendKeys("Electronic City");
 		
 		Actions ac = new Actions(driver);
 		
-		Thread.sleep(2000);
-		
 		WebElement el = driver.findElement(By.xpath("(//div[@class='_1oLDb']//span[@class='_2W-T9'])[2]"));
 		
 		ac.moveToElement(el).click().perform();
-		
-		Thread.sleep(5000);
 		
 		WebElement header = driver.findElement(By.cssSelector(".BZR3j"));
 		
 		int count = Integer.valueOf(header.getText().split(" ")[0]);
 		
 		List<WebElement> ele = driver.findElements(By.xpath("//div[@class='nA6kb']"));
-		int res = ele.size();
+		Set<WebElement> rest=null;
+		int res = 0;
 		while(count!=res)
 		{
-		//	List<WebElement> ele = driver.findElements(By.xpath("//div[@class='nA6kb']"));
+			rest = new HashSet<WebElement>(ele);
+
 			
-			
-			for(WebElement e :ele)
-			{
-				System.out.println("Restuarant is "+e.getText());
-				
-			}
-			ele=null;
 			doScrollDown(driver);
 			
 			ele = driver.findElements(By.xpath("//div[@class='nA6kb']"));
-			int a = ele.size();
+			int a = rest.size();
 			res+=a;
 			
 			System.out.println("-------------------");
 			System.out.println("List of Element is "+res);
 			System.out.println("-------------------");
 		}
+		
+		for(WebElement e :rest)
+		{
+			System.out.println("Restuarant is "+e.getText());
+			
+		}
+		
 	}
 	
 	public static void doScrollDown(WebDriver driver)
