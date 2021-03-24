@@ -13,4 +13,9 @@ public class Alex {
   {
     System.out.println("This m1 file");
   }
+  
+  public static void m2()
+  {
+	  System.out.println("This m2 file");
+  }
 }
